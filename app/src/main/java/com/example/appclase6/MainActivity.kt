@@ -87,11 +87,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showAlert(men: String) {
-        val builder = AlertDialog.Builder(this)
+    fun showAlert(mensajeAlerta: String) { //mensaje es un parametro: String (tipo de dato)
+        val builder = AlertDialog.Builder(this) //crear variable builder para guardar una instancia de la clase AlertDialog
         builder.setTitle("Sistema")
-        builder.setMessage(men)
-        builder.setPositiveButton("Aceptar", null)
+        builder.setMessage(mensajeAlerta)
+        builder.setPositiveButton("Aceptar") { dialog, which ->
+            // Este código se ejecutará cuando el usuario presione "Aceptar"
+            val intent = Intent(this, ListadoDocenteActivity::class.java)
+            startActivity(intent)
+            // Opcional: si quieres que la Activity actual se cierre después de ir a la nueva
+            // finish()
+        }
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
