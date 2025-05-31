@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         atvSexo = findViewById(R.id.atvSexo)
         btnGrabar = findViewById(R.id.btnGrabar)
         btnVolver = findViewById(R.id.btnVolver)
-        btnImagen = findViewById(R.id.imgDocente)
+        btnImagen = findViewById(R.id.imgDocenteDatos)
 
         btnImagen.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
