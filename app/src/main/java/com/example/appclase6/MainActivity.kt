@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
         btnVolver.setOnClickListener {
             val intent = Intent(this, ListadoDocenteActivity::class.java)
             startActivity(intent)
+
         }
     }
 
