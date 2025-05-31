@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">appClase6</string>
+    <string name="labelNombre">Ingresar nombre</string>
+    <string name="labelPaterno">Ingresar apellido paterno</string>
+    <string name="labelMaterno">Ingresar apellido materno</string>
+    <string name="labelSueldo">Ingresar sueldo</string>
+    <string name="labelHijos">Ingresar hijos</string>
+    <string name="labelSexo">[Seleccione sexo]</string>
+    <string-array name="sexos">
+        <item>Masculino</item>
+        <item>Femenino</item>
+    </string-array>
+</resources>
