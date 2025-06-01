@@ -9,12 +9,12 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appclase6.R
-import com.example.appclase6.adaptador.DocenteAdapter
+import com.example.appclase6.adaptador.SupervisorAdapter
 import android.widget.Toast
-import com.example.appclase6.controlador.DocenteController
+import com.example.appclase6.controlador.SupervisorController
 
 class SwipeToDeleteCallback(
-    private val adapter: DocenteAdapter,
+    private val adapter: SupervisorAdapter,
     private val context: Context,
     dragDirs: Int = 0,
     swipeDirs: Int = ItemTouchHelper.RIGHT
@@ -37,10 +37,10 @@ class SwipeToDeleteCallback(
             .setTitle("Confirmar eliminación")
             .setMessage("¿Estás seguro que deseas eliminar al docente ${docente.nombre} ${docente.paterno}?")
             .setPositiveButton("Eliminar") { _, _ ->
-                val resultado = DocenteController().eliminar(docente.codigo)
+                val resultado = SupervisorController().eliminar(docente.codigo)
                 if (resultado > 0) {
                     adapter.removeItem(position)
-                    Toast.makeText(context, "Docente eliminado correctamente", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Supervisor eliminado correctamente", Toast.LENGTH_SHORT).show()
                 } else {
                     adapter.notifyItemChanged(position)
                     Toast.makeText(context, "Error al eliminar docente", Toast.LENGTH_SHORT).show()

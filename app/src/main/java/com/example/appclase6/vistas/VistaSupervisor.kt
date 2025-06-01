@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appclase6.R
 
-class VistaDocente(item:View):RecyclerView.ViewHolder(item) {
+class VistaSupervisor(item:View):RecyclerView.ViewHolder(item) {
     //atributos
     var imgFoto:ImageView
     var tvCodigo:TextView

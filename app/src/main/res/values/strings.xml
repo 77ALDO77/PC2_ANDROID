@@ -5,9 +5,10 @@
     <string name="labelMaterno">Ingresar apellido materno</string>
     <string name="labelSueldo">Ingresar sueldo</string>
     <string name="labelHijos">Ingresar hijos</string>
-    <string name="labelSexo">[Seleccione sexo]</string>
+    <string name="labelSexo">[Seleccione su Turno]</string>
     <string-array name="sexos">
-        <item>Masculino</item>
-        <item>Femenino</item>
+        <item>Mañana</item>
+        <item>Tarde</item>
+        <item>Noche</item>
     </string-array>
 </resources>

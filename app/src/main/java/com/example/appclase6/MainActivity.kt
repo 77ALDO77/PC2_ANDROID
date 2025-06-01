@@ -11,8 +11,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.appclase6.controlador.DocenteController
-import com.example.appclase6.modelos.Docente
+import com.example.appclase6.controlador.SupervisorController
+import com.example.appclase6.modelos.Supervisor
 import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var txtPaterno: TextInputEditText
     private lateinit var txtMaterno: TextInputEditText
     private lateinit var txtSueldo: TextInputEditText
-    private lateinit var txtHijos: TextInputEditText
-    private lateinit var atvSexo: AutoCompleteTextView
+
+    private lateinit var atvTurno: AutoCompleteTextView
     private lateinit var btnGrabar: Button
     private lateinit var btnVolver: Button
     private lateinit var btnImagen: Button
@@ -43,11 +43,10 @@ class MainActivity : AppCompatActivity() {
         txtPaterno = findViewById(R.id.txtPaterno)
         txtMaterno = findViewById(R.id.txtMaterno)
         txtSueldo = findViewById(R.id.txtSueldo)
-        txtHijos = findViewById(R.id.txtHijos)
-        atvSexo = findViewById(R.id.atvSexo)
+        atvTurno = findViewById(R.id.atvTurno)
         btnGrabar = findViewById(R.id.btnGrabar)
         btnVolver = findViewById(R.id.btnVolver)
-        btnImagen = findViewById(R.id.imgDocenteDatos)
+        btnImagen = findViewById(R.id.imgSupervisorDatos)
 
         btnImagen.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
@@ -60,20 +59,19 @@ class MainActivity : AppCompatActivity() {
             val pat = txtPaterno.text.toString()
             val mat = txtMaterno.text.toString()
             val sue = txtSueldo.text.toString().toDoubleOrNull() ?: 0.0
-            val hijos = txtHijos.text.toString().toIntOrNull() ?: 0
-            val sexo = atvSexo.text.toString()
+            val turno = atvTurno.text.toString()
             val fotoUri = imageUri?.toString() ?: ""
 
-            val obj = Docente(0, nom, pat, mat, sue, hijos, sexo, fotoUri)
-            val salida = DocenteController().save(obj)
+            val obj = Supervisor(0, nom, pat, mat, sue,turno, fotoUri)
+            val salida = SupervisorController().save(obj)
             if (salida > 0)
-                showAlert("Docente registrado")
+                showAlert("Supervisor registrado")
             else
                 showAlert("Error en el registro")
         }
 
         btnVolver.setOnClickListener {
-            val intent = Intent(this, ListadoDocenteActivity::class.java)
+            val intent = Intent(this, ListadoSupervisorActivity::class.java)
             startActivity(intent)
 
         }
@@ -93,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         builder.setMessage(mensajeAlerta)
         builder.setPositiveButton("Aceptar") { dialog, which ->
             // Este código se ejecutará cuando el usuario presione "Aceptar"
-            val intent = Intent(this, ListadoDocenteActivity::class.java)
+            val intent = Intent(this, ListadoSupervisorActivity::class.java)
             startActivity(intent)
             // Opcional: si quieres que la Activity actual se cierre después de ir a la nueva
             // finish()

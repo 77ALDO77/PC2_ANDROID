@@ -6,24 +6,22 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.AutoCompleteTextView
 import android.widget.Button
-import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.appclase6.controlador.DocenteController
-import com.example.appclase6.modelos.Docente
+import com.example.appclase6.controlador.SupervisorController
+import com.example.appclase6.modelos.Supervisor
 import com.google.android.material.textfield.TextInputEditText
 
-class DatosDocenteActivity : AppCompatActivity() {
+class DatosSupervisorActivity : AppCompatActivity() {
     private lateinit var txtCodigo:TextInputEditText
     private lateinit var txtNombre:TextInputEditText
     private lateinit var txtPaterno:TextInputEditText
     private lateinit var txtMaterno:TextInputEditText
     private lateinit var txtSueldo:TextInputEditText
-    private lateinit var txtHijos:TextInputEditText
-    private lateinit var atvSexo:AutoCompleteTextView
+    private lateinit var atvTurno:AutoCompleteTextView
     private lateinit var imgDocenteDatos:Button
     private lateinit var btnModificar:Button
     private lateinit var btnVolver:Button
@@ -34,7 +32,7 @@ class DatosDocenteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.docente_datos_main)
+        setContentView(R.layout.supervisor_datos_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -46,12 +44,11 @@ class DatosDocenteActivity : AppCompatActivity() {
         txtPaterno=findViewById(R.id.txtPaternoDatos)
         txtMaterno=findViewById(R.id.txtMaternoDatos)
         txtSueldo=findViewById(R.id.txtSueldoDatos)
-        txtHijos=findViewById(R.id.txtHijosDatos)
-        atvSexo=findViewById(R.id.atvSexoDatos)
-        imgDocenteDatos=findViewById(R.id.imgDocenteDatos)
-        btnModificar=findViewById(R.id.btnModificarDocente)
-        btnVolver=findViewById(R.id.btnVolverDocente)
-        btnEliminarDocente=findViewById(R.id.btnEliminarDocente)
+        atvTurno=findViewById(R.id.atvTurnoDatos)
+        imgDocenteDatos=findViewById(R.id.imgSupervisorDatos)
+        btnModificar=findViewById(R.id.btnModificarSupervisor)
+        btnVolver=findViewById(R.id.btnVolverSupervisor)
+        btnEliminarDocente=findViewById(R.id.btnEliminarSupervisor)
         //cargar la vista con los datos
         mostrarDatos()
         //
@@ -67,13 +64,12 @@ class DatosDocenteActivity : AppCompatActivity() {
             var pat=txtPaterno.text.toString()
             var mat=txtMaterno.text.toString()
             var sue=txtSueldo.text.toString().toDouble()
-            var hijos=txtHijos.text.toString().toInt()
-            var sexo=atvSexo.text.toString()
+            var turno=atvTurno.text.toString()
             val fotoUri = imageUri?.toString() ?: ""
             //crear objeto de la clase Docente
-            var obj=Docente(cod,nom,pat,mat,sue,hijos,sexo,fotoUri)
+            var obj=Supervisor(cod,nom,pat,mat,sue,turno,fotoUri)
             //invocar al método update
-            var salida=DocenteController().actualizar(obj)
+            var salida=SupervisorController().actualizar(obj)
             //validar salida
             if(salida>0)
                 showAlert("Docente actualizado")
@@ -81,14 +77,14 @@ class DatosDocenteActivity : AppCompatActivity() {
                 showAlert("Error en la actualización")
         }
         btnVolver.setOnClickListener {
-            var intent=Intent(this,ListadoDocenteActivity::class.java)
+            var intent=Intent(this,ListadoSupervisorActivity::class.java)
             startActivity(intent)
         }
         btnEliminarDocente.setOnClickListener {
             //leer el código
             var cod=txtCodigo.text.toString().toInt()
             //invocar al método delete
-            var salida=DocenteController().eliminar(cod)
+            var salida=SupervisorController().eliminar(cod)
             //validar salida
             if(salida>0)
                 showAlert("Docente eliminado")
@@ -109,7 +105,7 @@ class DatosDocenteActivity : AppCompatActivity() {
         builder.setMessage(mensajeAlerta)
         builder.setPositiveButton("Aceptar") { dialog, which ->
             // Este código se ejecutará cuando el usuario presione "Aceptar"
-            val intent = Intent(this, ListadoDocenteActivity::class.java)
+            val intent = Intent(this, ListadoSupervisorActivity::class.java)
             startActivity(intent)
             // Opcional: si quieres que la Activity actual se cierre después de ir a la nueva
             // finish()
@@ -121,15 +117,14 @@ class DatosDocenteActivity : AppCompatActivity() {
     fun mostrarDatos(){
         var data=intent.extras!!
         //invocar a la función findById y enviar el código
-        var obj=DocenteController().findById(data.getInt("codigo"))
+        var obj=SupervisorController().findById(data.getInt("codigo"))
         //mostrar valores del objeto "obj" en las cajas
         txtCodigo.setText(obj.codigo.toString())
         txtNombre.setText(obj.nombre)
         txtPaterno.setText(obj.paterno)
         txtMaterno.setText(obj.materno)
         txtSueldo.setText(obj.sueldo.toString())
-        txtHijos.setText(obj.hijos.toString())
-        atvSexo.setText(obj.sexo,false)
+        atvTurno.setText(obj.turno,false)
         //agregar imagen en la variable nada mas
         // si el campo fotoUri tiene un valor válido, convertirlo a Uri y asignarlo
         // Convertir el valor del campo fotoUri a Uri (si existe)
