@@ -4,30 +4,33 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.appclase6.utils.AppConfig
 
-class BD:SQLiteOpenHelper(AppConfig.contexto,
-    "consorcio.bd",null,1) {
-    override fun onCreate(p0: SQLiteDatabase) {
-        //crear tablas
-        p0.execSQL( "create table tb_docente"+
-                        "(" +
-                            "cod integer primary key autoincrement," +
-                            "nom varchar(30)," +
-                            "pat varchar(40)," +
-                            "mat varchar(40)," +
-                            "sue double,"+
-                            "hijos int,"+
-                            "sexo varchar(15),"+
-                            "foto varchar(20)"+
-                        ")"
-        )
-        //registros
-        p0.execSQL("insert into tb_docente values(null,'Ana','Soto','Ayala',5800.7,1,'Femenino','d1')")
-        p0.execSQL("insert into tb_docente values(null,'Luz','Mora','Palacios',4500.0,1,'Femenino','d2')")
+class BD : SQLiteOpenHelper(AppConfig.contexto, "consorcio.bd", null, 1) {
+
+    companion object {
+        private const val CREATE_TABLE_SUPERVISOR = """
+            CREATE TABLE IF NOT EXISTS tb_supervisor (
+                cod INTEGER PRIMARY KEY AUTOINCREMENT,
+                nom VARCHAR(30),
+                pat VARCHAR(40),
+                mat VARCHAR(40),
+                sue DOUBLE,
+                turno VARCHAR(15),
+                foto TEXT
+            )
+        """
     }
 
-    override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
-
+    override fun onCreate(db: SQLiteDatabase) {
+        db.execSQL(CREATE_TABLE_SUPERVISOR)
     }
 
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        db?.execSQL("DROP TABLE IF EXISTS tb_supervisor")
+        db?.let { onCreate(it) }
+    }
 
+    fun createTableIfNotExists() {
+        val db = this.writableDatabase
+        db.execSQL(CREATE_TABLE_SUPERVISOR)
+    }
 }

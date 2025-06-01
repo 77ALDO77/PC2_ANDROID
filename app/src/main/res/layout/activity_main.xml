@@ -19,7 +19,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="DOCENTE"
+            android:text="SUPERVISOR"
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -110,13 +110,6 @@
                 android:text="SUELDO"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="HIJOS"
-                android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -140,23 +133,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField5"
-                app:endIconMode="clear_text"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:hint="@string/labelHijos"
-                app:startIconDrawable="@drawable/account">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtHijos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
 
         </LinearLayout>
 
@@ -165,7 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="SEXO"
+            android:text="TURNO"
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -178,7 +154,7 @@
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
             <AutoCompleteTextView
-                android:id="@+id/atvSexo"
+                android:id="@+id/atvTurno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -199,7 +175,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/imgDocenteDatos"
+                android:id="@+id/imgSupervisorDatos"
                 android:layout_width="175dp"
                 android:layout_height="wrap_content"
                 android:text="Insertar Imagen"
@@ -208,7 +184,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 

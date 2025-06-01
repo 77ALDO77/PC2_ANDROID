@@ -14,13 +14,13 @@
         tools:layout_editor_absoluteY="1dp">
 
         <Button
-            android:id="@+id/btnNuevoDocente"
+            android:id="@+id/btnNuevoSupervisor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nuevo Docente" />
+            android:text="Nuevo Supervisor" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvDocentes"
+            android:id="@+id/rvSupervisores"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

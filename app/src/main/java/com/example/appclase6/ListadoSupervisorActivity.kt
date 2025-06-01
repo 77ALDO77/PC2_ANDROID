@@ -11,20 +11,20 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appclase6.adaptador.DocenteAdapter
-import com.example.appclase6.controlador.DocenteController
+import com.example.appclase6.adaptador.SupervisorAdapter
+import com.example.appclase6.controlador.SupervisorController
 import com.example.appclase6.utils.SwipeToDeleteCallback
 
-class ListadoDocenteActivity : AppCompatActivity() {
+class ListadoSupervisorActivity : AppCompatActivity() {
     private lateinit var rvDocentes: RecyclerView
     private lateinit var btnNuevo: Button
-    private lateinit var adapter: DocenteAdapter
+    private lateinit var adapter: SupervisorAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.listado_docente_main)
+        setContentView(R.layout.listado_supervisor_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -34,8 +34,8 @@ class ListadoDocenteActivity : AppCompatActivity() {
 
 
         // Inicializar vistas
-        rvDocentes = findViewById(R.id.rvDocentes)
-        btnNuevo = findViewById(R.id.btnNuevoDocente)
+        rvDocentes = findViewById(R.id.rvSupervisores)
+        btnNuevo = findViewById(R.id.btnNuevoSupervisor)
 
         // Configurar RecyclerView
         setupRecyclerView()
@@ -47,16 +47,16 @@ class ListadoDocenteActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         // Crear adapter con datos
         // En ListadoDocenteActivity.kt
-        val todosLosDocentes = ArrayList(DocenteController().findAll()) // Primero obtenemos la lista
-        adapter = DocenteAdapter(docentes = todosLosDocentes, data = todosLosDocentes) // Luego la pasamos a ambos parámetros
+        val todosLosDocentes = ArrayList(SupervisorController().findAll()) // Primero obtenemos la lista
+        adapter = SupervisorAdapter(supervisors = todosLosDocentes, data = todosLosDocentes) // Luego la pasamos a ambos parámetros
         //hola
         // Configurar RecyclerView
         rvDocentes.apply {
-            layoutManager = LinearLayoutManager(this@ListadoDocenteActivity)
-            adapter = this@ListadoDocenteActivity.adapter
+            layoutManager = LinearLayoutManager(this@ListadoSupervisorActivity)
+            adapter = this@ListadoSupervisorActivity.adapter
             addItemDecoration(
                 DividerItemDecoration(
-                    this@ListadoDocenteActivity,
+                    this@ListadoSupervisorActivity,
                     DividerItemDecoration.VERTICAL
                 )
             )
